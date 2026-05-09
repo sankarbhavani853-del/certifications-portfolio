@@ -44,6 +44,8 @@ project-folder/
 ## 📸 Preview
 
 Professional certifications showcase website with interactive certificate cards and search functionality.
+<img width="1365" height="591" alt="Screenshot 2026-05-09 134811" src="https://github.com/user-attachments/assets/d2c745e0-27a3-4f4a-bd81-84d2b76a93fd" />
+
 
 ## 🌐 Live Demo
 
