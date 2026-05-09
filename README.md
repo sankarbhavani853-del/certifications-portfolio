@@ -1,76 +1,506 @@
-# Certifications Portfolio Website
 
-A modern and responsive Certifications Portfolio Website built using HTML, CSS, and JavaScript.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Certifications</title>
 
-## 🚀 Features
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-- Modern UI Design
-- Responsive Layout
-- Category Navigation
-- Skill-Based Search
-- Certificate Preview
-- Download Certificates
-- Hover Animations
-- Mobile Friendly
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
 
-## 🛠️ Technologies Used
+    body{
+      background:#0f172a;
+      color:white;
+    }
 
-- HTML5
-- CSS3
-- JavaScript
+    /* NAVBAR */
 
-## 📂 Project Structure
+    nav{
+      width:100%;
+      background:#111827;
+      padding:18px 7%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:sticky;
+      top:0;
+      z-index:1000;
+      box-shadow:0 5px 15px rgba(0,0,0,0.3);
+    }
 
-```text
-project-folder/
-│
-├── index.html
-├── certificate1.png
-├── certificate2.png
-├── certificate3.png
-```
+    .logo{
+      font-size:28px;
+      font-weight:700;
+      color:#38bdf8;
+    }
 
-## 🔍 Functionality
+    .nav-links{
+      display:flex;
+      gap:20px;
+      align-items:center;
+    }
 
-- Search certifications by:
-  - Skill
-  - Category
-  - Certificate Name
+    .nav-links button{
+      padding:10px 18px;
+      border:none;
+      border-radius:10px;
+      background:#1e293b;
+      color:white;
+      cursor:pointer;
+      transition:0.3s;
+      font-weight:500;
+    }
 
-- Filter certificates using navigation buttons.
+    .nav-links button:hover,
+    .nav-links button.active{
+      background:#38bdf8;
+      color:black;
+    }
 
-- View and download certificates directly.
+    .search-box{
+      display:flex;
+      align-items:center;
+      background:#1e293b;
+      padding:10px 15px;
+      border-radius:10px;
+      width:280px;
+    }
 
-## 📸 Preview
+    .search-box input{
+      width:100%;
+      background:transparent;
+      border:none;
+      outline:none;
+      color:white;
+      font-size:15px;
+    }
 
-Professional certifications showcase website with interactive certificate cards and search functionality.
-<img width="1365" height="591" alt="Screenshot 2026-05-09 134811" src="https://github.com/user-attachments/assets/d2c745e0-27a3-4f4a-bd81-84d2b76a93fd" />
+    .hero{
+      text-align:center;
+      padding:60px 20px 30px;
+    }
+
+    .hero h1{
+      font-size:50px;
+      margin-bottom:15px;
+      color:#38bdf8;
+    }
+
+    .hero p{
+      color:#cbd5e1;
+      max-width:700px;
+      margin:auto;
+      line-height:1.8;
+    }
+
+    /* CERTIFICATIONS */
+
+    .container{
+      width:90%;
+      margin:auto;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:30px;
+      padding:40px 0 60px;
+    }
+
+    .card{
+      background:#1e293b;
+      border-radius:20px;
+      overflow:hidden;
+      transition:0.4s;
+      box-shadow:0 10px 25px rgba(0,0,0,0.4);
+      position:relative;
+    }
+
+    .card:hover{
+      transform:translateY(-10px) scale(1.02);
+    }
+
+    .card img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+    }
+
+    .content{
+      padding:25px;
+    }
+
+    .tag{
+      display:inline-block;
+      background:#38bdf8;
+      color:black;
+      font-size:13px;
+      font-weight:600;
+      padding:6px 14px;
+      border-radius:30px;
+      margin-bottom:15px;
+    }
+
+    .content h2{
+      margin-bottom:10px;
+      font-size:24px;
+    }
+
+    .content p{
+      color:#cbd5e1;
+      line-height:1.7;
+      margin-bottom:20px;
+    }
+
+    .btns{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      flex:1;
+      text-align:center;
+      padding:12px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:600;
+      transition:0.3s;
+    }
+
+    .view-btn{
+      background:#38bdf8;
+      color:black;
+    }
+
+    .download-btn{
+      background:#0ea5e9;
+      color:white;
+    }
+
+    .btn:hover{
+      opacity:0.85;
+      transform:scale(1.03);
+    }
+
+    .empty{
+      text-align:center;
+      padding:60px;
+      font-size:22px;
+      color:#94a3b8;
+      display:none;
+    }
+
+    footer{
+      text-align:center;
+      padding:25px;
+      background:#111827;
+      color:#94a3b8;
+    }
+
+    @media(max-width:900px){
+      nav{
+        flex-direction:column;
+        gap:20px;
+      }
+
+      .nav-links{
+        flex-wrap:wrap;
+        justify-content:center;
+      }
+
+      .search-box{
+        width:100%;
+      }
+
+      .hero h1{
+        font-size:38px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav>
+    <div class="logo">My Certifications</div>
+
+    <div class="nav-links">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="Programming">Programming</button>
+      <button class="filter-btn" data-filter="Web">Web</button>
+      <button class="filter-btn" data-filter="AI">AI</button>
+      <button class="filter-btn" data-filter="Data">Data</button>
+    </div>
+
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search certifications or skills...">
+    </div>
+  </nav>
+
+  <!-- HERO -->
+
+  <section class="hero">
+    <h1>My Certification Portfolio</h1>
+    <p>
+      Explore all my professional certifications, technical achievements,
+      programming skills, web development certificates, AI learning records,
+      and downloadable course certificates.
+    </p>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+
+  <div class="container" id="certificatesContainer"></div>
+
+  <div class="empty" id="emptyMessage">
+    No Certification Found
+  </div>
+
+  <footer>
+    © 2026 My Certification Portfolio | Designed by Bhavani Sankar
+  </footer>
+
+  <script>
+
+    const certifications = [
+
+      {
+        title: "Python Programming",
+        category: "Programming",
+        skill: "Python",
+        description: "Completed advanced Python programming certification course.",
+        image: "bestconverter_page_1.jpg",
+        view: "bestconverter_page_1.jpg",
+        download: "bestconverter_page_1.jpg"
+      },
+
+      {
+        title: "HTML CSS JavaScript",
+        category: "Web",
+        skill: "Web Development",
+        description: "Frontend web development certification with responsive design.",
+        image: "bestconverter_page_1.jpg",
+        view: "bestconverter_page_1.jpg",
+        download: "bestconverter_page_1.jpg"
+      },
+
+      {
+        title: "Machine Learning",
+        category: "AI",
+        skill: "Machine Learning",
+        description: "AI and Machine Learning certification with practical projects.",
+        image: "bestconverter_page_1.jpg",
+        view: "bestconverter_page_1.jpg",
+        download: "bestconverter_page_1.jpg"
+      },
+
+      {
+        title: "Data Analytics",
+        category: "Data",
+        skill: "Power BI",
+        description: "Data analytics and visualization certification course.",
+        image: "bestconverter_page_1.jpg",
+        view: "bestconverter_page_1.jpg",
+        download: "bestconverter_page_1.jpg"
+      },
+
+       {
+        title: "Data Analytics",
+        category: "Data",
+        skill: "Power BI",
+        description: "Data analytics and visualization certification course.",
+        image: "bestconverter_page_1.jpg",
+        view: "bestconverter_page_1.jpg",
+        download: "bestconverter_page_1.jpg"
+      },
+
+       {
+        title: "Data Analytics",
+        category: "Data",
+        skill: "Power BI",
+        description: "Data analytics and visualization certification course.",
+        image: "bestconverter_page_1.jpg",
+        view: "bestconverter_page_1.jpg",
+        download: "bestconverter_page_1.jpg"
+      },
+
+       {
+        title: "Data Analytics",
+        category: "Data",
+        skill: "Power BI",
+        description: "Data analytics and visualization certification course.",
+        image: "bestconverter_page_1.jpg",
+        view: "bestconverter_page_1.jpg",
+        download: "bestconverter_page_1.jpg"
+      },
+
+       {
+        title: "Data Analytics",
+        category: "Data",
+        skill: "Power BI",
+        description: "Data analytics and visualization certification course.",
+        image: "bestconverter_page_1.jpg",
+        view: "bestconverter_page_1.jpg",
+        download: "bestconverter_page_1.jpg"
+      },
+
+       {
+        title: "Data Analytics",
+        category: "Data",
+        skill: "Power BI",
+        description: "Data analytics and visualization certification course.",
+        image: "bestconverter_page_1.jpg",
+        view: "bestconverter_page_1.jpg",
+        download: "bestconverter_page_1.jpg"
+      },
+
+       {
+        title: "Data Analytics",
+        category: "Data",
+        skill: "Power BI",
+        description: "Data analytics and visualization certification course.",
+        image: "bestconverter_page_1.jpg",
+        view: "bestconverter_page_1.jpg",
+        download: "bestconverter_page_1.jpg"
+      },
+
+       {
+        title: "Data Analytics",
+        category: "Data",
+        skill: "Power BI",
+        description: "Data analytics and visualization certification course.",
+        image: "bestconverter_page_1.jpg",
+        view: "bestconverter_page_1.jpg",
+        download: "bestconverter_page_1.jpg"
+      },
+
+       {
+        title: "Data Analytics",
+        category: "Data",
+        skill: "Power BI",
+        description: "Data analytics and visualization certification course.",
+        image: "bestconverter_page_1.jpg",
+        view: "bestconverter_page_1.jpg",
+        download: "bestconverter_page_1.jpg"
+      }
+
+    ];
 
 
-## 🌐 Live Demo
+    const container = document.getElementById('certificatesContainer');
+    const searchInput = document.getElementById('searchInput');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const emptyMessage = document.getElementById('emptyMessage');
 
-Add your GitHub Pages link here:
 
-```text
- https://sankarbhavani853-del.github.io/certifications-portfolio/
-```
+    function displayCertificates(data){
 
-## 📥 Installation
+      container.innerHTML = "";
 
-1. Download or clone the repository
+      if(data.length === 0){
+        emptyMessage.style.display = "block";
+      }
+      else{
+        emptyMessage.style.display = "none";
+      }
 
-```bash
-git clone  https://sankarbhavani853-del.github.io/certifications-portfolio/
-```
+      data.forEach(cert => {
 
-2. Open project folder
+        container.innerHTML += `
 
-3. Run `index.html`
+          <div class="card">
 
-## 👨‍💻 Author
+            <img src="${cert.image}" alt="${cert.title}">
 
-Bhavani Sankar
+            <div class="content">
 
-## 📄 License
+              <span class="tag">${cert.category}</span>
 
-This project is open source and free to use.
+              <h2>${cert.title}</h2>
+
+              <p>${cert.description}</p>
+
+              <div class="btns">
+
+                <a href="${cert.view}" target="_blank" class="btn view-btn">
+                  View
+                </a>
+
+                <a href="${cert.download}" download class="btn download-btn">
+                  Download
+                </a>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        `;
+
+      });
+    }
+
+
+    displayCertificates(certifications);
+
+
+    // SEARCH FUNCTION
+
+    searchInput.addEventListener('keyup', () => {
+
+      const value = searchInput.value.toLowerCase();
+
+      const filtered = certifications.filter(cert =>
+
+        cert.title.toLowerCase().includes(value) ||
+        cert.skill.toLowerCase().includes(value) ||
+        cert.category.toLowerCase().includes(value)
+
+      );
+
+      displayCertificates(filtered);
+
+    });
+
+
+    // FILTER FUNCTION
+
+    filterButtons.forEach(button => {
+
+      button.addEventListener('click', () => {
+
+        document.querySelector('.active').classList.remove('active');
+        button.classList.add('active');
+
+        const filter = button.dataset.filter;
+
+        if(filter === 'all'){
+          displayCertificates(certifications);
+        }
+        else{
+
+          const filtered = certifications.filter(cert =>
+            cert.category === filter
+          );
+
+          displayCertificates(filtered);
+        }
+
+      });
+
+    });
+
+  </script>
+
+</body>
+</html>
