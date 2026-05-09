@@ -52,7 +52,7 @@ Professional certifications showcase website with interactive certificate cards 
 Add your GitHub Pages link here:
 
 ```text
-https://yourusername.github.io/certifications-portfolio/
+ https://sankarbhavani853-del.github.io/certifications-portfolio/
 ```
 
 ## 📥 Installation
@@ -60,7 +60,7 @@ https://yourusername.github.io/certifications-portfolio/
 1. Download or clone the repository
 
 ```bash
-git clone https://github.com/yourusername/certifications-portfolio.git
+git clone  https://sankarbhavani853-del.github.io/certifications-portfolio/
 ```
 
 2. Open project folder
